@@ -1,0 +1,10 @@
+<div>
+  <h1 i18n:translate="">Login Failed!</h1>
+
+  <p style="font-size: 150%">
+    <tal:block
+       i18n:translate="">You cancelled the login procedure.</tal:block>
+    <a tal:attributes="href python: view.request.get('nextURL', '.')"
+       i18n:translate="">Click here to return.</a>
+  </p>
+</div>

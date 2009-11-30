@@ -1,0 +1,12 @@
+=======
+CHANGES
+=======
+
+0.5.0 (2009-11-30)
+------------------
+
+- moved authentication viewlet implementation from z3c.layer.pagelet to this
+  package. Not sure but probably we should skip the dependency to 
+  zope.app.publisher.interfaces.http and use and define own interfaces.
+
+- initial release.
