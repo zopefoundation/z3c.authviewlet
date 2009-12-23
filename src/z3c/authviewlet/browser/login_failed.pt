@@ -1,4 +1,4 @@
-<div>
+<div i18n:domain="z3c">
   <h1 i18n:translate="">Login Failed!</h1>
 
   <p style="font-size: 150%">

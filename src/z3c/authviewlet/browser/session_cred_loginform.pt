@@ -1,4 +1,5 @@
-<div tal:define="principal python:request.principal.id">
+<div i18n:domain="z3c"
+     tal:define="principal python:request.principal.id">
   <p i18n:translate=""
      tal:condition="python: principal == 'zope.anybody'">
     Please provide Login Information

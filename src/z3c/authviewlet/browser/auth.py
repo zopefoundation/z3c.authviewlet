@@ -90,10 +90,10 @@ class LoginViewlet(zope.viewlet.viewlet.ViewletBase):
 
     def render(self):
         return u'<a href="%s?nextURL=%s">%s</a>' % (
-                get_view_url(self. context, self.request, self.viewName),
-                urllib.quote(self.request.getURL()),
-                zope.i18n.translate(
-                    _('[Login]', default='Login'), context=self.request))
+            get_view_url(self. context, self.request, self.viewName),
+            urllib.quote(self.request.getURL()),
+            zope.i18n.translate(_('[Login]', default='Login'),
+                                domain='z3c', context=self.request))
 
 
 class LogoutViewlet(zope.viewlet.viewlet.ViewletBase):
@@ -108,10 +108,11 @@ class LogoutViewlet(zope.viewlet.viewlet.ViewletBase):
 
     def render(self):
         return u'<a href="%s?nextURL=%s">%s</a>' % (
-                get_view_url(self. context, self.request, self.viewName),
-                urllib.quote(self.request.getURL()),
-                zope.i18n.translate(
-                    _('[Logout]', default='Logout'), context=self.request))
+            get_view_url(self. context, self.request, self.viewName),
+            urllib.quote(self.request.getURL()),
+            zope.i18n.translate(_('[Logout]', default='Logout'),
+                                domain='z3c',
+                                context=self.request))
 
 
 class HTTPAuthenticationLogin(object):
