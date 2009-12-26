@@ -40,13 +40,13 @@
 
   <!-- use tempate with head slot for logout pagelets -->
   <z3c:layout
-      for="z3c.authviewlet.browser.auth.LogoutRedirectPagelet"
+      for="z3c.authviewlet.auth.LogoutRedirectPagelet"
       layer="z3c.layer.pagelet.IPageletBrowserLayer"
       template="login-logout-template.pt"
       />
 
   <z3c:layout
-      for="z3c.authviewlet.browser.auth.LogoutSuccessPagelet"
+      for="z3c.authviewlet.auth.LogoutSuccessPagelet"
       layer="z3c.layer.pagelet.IPageletBrowserLayer"
       template="login-logout-template.pt"
       />

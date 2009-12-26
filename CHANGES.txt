@@ -5,7 +5,8 @@ Changes
 0.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Moved files in ``z3c.authviewlet.browser`` to ``z3c.authviewlet`` as
+  we only have browser code in this package.
 
 
 0.6.0 (2009-12-24)
