@@ -50,7 +50,7 @@
      name="login.html"
      class=".auth.HTTPAuthenticationLogin"
      attribute="login"
-     allowed_interface="zope.app.publisher.interfaces.http.ILogin"
+     allowed_interface="z3c.authviewlet.interfaces.ILogin"
      permission="zope.Public"
      />
 
@@ -106,7 +106,7 @@
      name="logout.html"
      class=".auth.HTTPAuthenticationLogout"
      attribute="logout"
-     allowed_interface="zope.app.publisher.interfaces.http.ILogout"
+     allowed_interface="zope.authentication.interfaces.ILogout"
      permission="zope.Public"
      />
 

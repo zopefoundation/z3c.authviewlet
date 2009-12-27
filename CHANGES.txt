@@ -5,8 +5,11 @@ Changes
 0.6.1 (unreleased)
 ------------------
 
-- Moved files in ``z3c.authviewlet.browser`` to ``z3c.authviewlet`` as
+- Moved files in `z3c.authviewlet.browser` to `z3c.authviewlet` as
   we only have browser code in this package.
+
+- Broke dependency on `zope.app.publisher` by defining our own
+  ``ILogin`` interface.
 
 
 0.6.0 (2009-12-24)
@@ -18,8 +21,6 @@ Changes
 ------------------
 
 - Moved authentication viewlet implementation from `z3c.layer.pagelet`
-  to this package. Not sure but probably we should skip the dependency
-  to ``zope.app.publisher.interfaces.http`` and use and define own
-  interfaces.
+  to this package.
 
 - Initial release.

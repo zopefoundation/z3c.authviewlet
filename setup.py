@@ -63,7 +63,6 @@ setup(
     install_requires = [
         'setuptools',
         'z3c.layer.pagelet',
-        'zope.app.publisher',
         'zope.authentication',
         'zope.component',
         'zope.i18n',

@@ -11,13 +11,12 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Login and Logout screens
 
-$Id:$
-"""
+"""Login and logout viewlets."""
+
 import urllib
+import z3c.authviewlet.interfaces
 import z3c.pagelet.interfaces
-import zope.app.publisher.interfaces.http
 import zope.authentication.interfaces
 import zope.component
 import zope.i18n
@@ -117,7 +116,7 @@ class LogoutViewlet(zope.viewlet.viewlet.ViewletBase):
 
 class HTTPAuthenticationLogin(object):
 
-    zope.interface.implements(zope.app.publisher.interfaces.http.ILogin)
+    zope.interface.implements(z3c.authviewlet.interfaces.ILogin)
 
     def login(self, nextURL=None):
         # we don't want to keep challenging if we're authenticated
