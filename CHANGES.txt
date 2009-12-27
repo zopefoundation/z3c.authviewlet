@@ -1,7 +1,7 @@
 Changes
 -------
 
-0.6.1 (unreleased)
+0.7.0 (2009-12-27)
 ~~~~~~~~~~~~~~~~~~
 
 - Moved files in `z3c.authviewlet.browser` to `z3c.authviewlet` as
