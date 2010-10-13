@@ -1,7 +1,7 @@
 Changes
 -------
 
-0.8.0 (unreleased)
+0.8.0 (2010-10-13)
 ~~~~~~~~~~~~~~~~~~
 
 - Adapted test set up to the changes in `z3c.layer.pagelet` 1.9 thus
