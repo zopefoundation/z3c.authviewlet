@@ -54,15 +54,16 @@ setup(
     namespace_packages = ['z3c',],
     extras_require = dict(
         test = [
-            'zope.testbrowser',
-            'z3c.layer.pagelet',
+            'z3c.layer.pagelet [test] >= 1.9',
+            'zope.app.authentication',
             'zope.app.testing',
+            'zope.testbrowser',
             'zope.testing',
             ],
         ),
     install_requires = [
         'setuptools',
-        'z3c.layer.pagelet',
+        'z3c.layer.pagelet >= 1.9',
         'zope.authentication',
         'zope.component',
         'zope.i18n',
