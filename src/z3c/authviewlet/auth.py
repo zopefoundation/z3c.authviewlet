@@ -168,7 +168,3 @@ class LogoutSuccessPagelet(object):
     "Pagelet to display logout success."
 
 
-class SessionCredentialsLoginForm(object):
-    "Login form using session credentials."
-
-

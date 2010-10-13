@@ -7,6 +7,11 @@ Changes
 - Adapted test set up to the changes in `z3c.layer.pagelet` 1.9 thus
   requiring at least this version now.
 
+- Moved code from page template of session credentials login page to view
+  class so it can be customized. (Taken from
+  `zope.app.authentication.browser.loginform.LoginForm`.) Moved view class
+  ``SessionCredentialsLoginForm`` from `z3c.authviewlet.auth` to
+  `z3c.authviewlet.session`.
 
 0.7.0 (2009-12-27)
 ~~~~~~~~~~~~~~~~~~
@@ -16,7 +21,6 @@ Changes
 
 - Broke dependency on `zope.app.publisher` by defining our own
   ``ILogin`` interface.
-
 
 0.6.0 (2009-12-24)
 ~~~~~~~~~~~~~~~~~~

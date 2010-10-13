@@ -59,12 +59,12 @@
      for="*"
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
      name="loginForm.html"
-     class=".auth.SessionCredentialsLoginForm"
+     class=".session.SessionCredentialsLoginForm"
      permission="zope.Public"
      />
 
   <z3c:template
-     for=".auth.SessionCredentialsLoginForm"
+     for=".session.SessionCredentialsLoginForm"
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
      template="session_cred_loginform.pt"
      />

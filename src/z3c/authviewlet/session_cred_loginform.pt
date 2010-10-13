@@ -1,19 +1,14 @@
-<div i18n:domain="z3c"
-     tal:define="principal python:request.principal.id">
+<div i18n:domain="z3c">
   <p i18n:translate=""
-     tal:condition="python: principal == 'zope.anybody'">
+     tal:condition="view/unauthenticated">
     Please provide Login Information
   </p>
   <p i18n:translate=""
-     tal:condition="python: principal != 'zope.anybody'">
+     tal:condition="not:view/unauthenticated">
     You are not authorized to perform this action. However, you may login as a
     different user who is authorized.
   </p>
   <form action="" method="post">
-    <div tal:omit-tag=""
-         tal:condition="python:principal != 'zope.anybody' and 'SUBMIT' in request">
-      <span tal:define="dummy python:request.response.redirect(request.get('camefrom', ''))" />
-    </div>
     <div class="row">
       <div class="label"><label for="login" i18n:translate="">User Name</label></div>
       <div class="field">
@@ -32,6 +27,6 @@
       <input class="form-element" type="submit"
              name="SUBMIT" value="Log in" i18n:attributes="value login-button" />
     </div>
-    <input type="hidden" name="camefrom" tal:attributes="value request/camefrom | nothing">
+    <input type="hidden" name="camefrom" tal:attributes="value view/camefrom">
   </form>
 </div>
