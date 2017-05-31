@@ -57,7 +57,7 @@ setup(
             'z3c.layer.pagelet [test] >= 1.9',
             'zope.app.authentication',
             'zope.app.testing',
-            'zope.testbrowser',
+            'zope.testbrowser < 5',
             'zope.testing',
             ],
         ),

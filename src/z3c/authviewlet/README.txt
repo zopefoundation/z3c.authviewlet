@@ -314,7 +314,7 @@ Selecting the link leads to the login page:
   >>> login_url = browser.getLink('Login').url
   >>> browser.getLink('Login').click()
   >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html'
+  'http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html'
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -343,8 +343,7 @@ Selecting the link leads to the login page:
         <input class="form-element" type="submit"
                name="SUBMIT" value="Log in" />
       </div>
-      <input type="hidden" name="camefrom"
-             value="/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html">
+      <input type="hidden" name="camefrom" value="http://localhost/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html">
     </form>
   </div>
   </body>
@@ -357,7 +356,7 @@ message:
   >>> browser.getControl('Password').value = 'tpass'
   >>> browser.getControl('Log in').click()
   >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html'
+  'http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html'
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -386,8 +385,7 @@ message:
         <input class="form-element" type="submit"
                name="SUBMIT" value="Log in" />
       </div>
-      <input type="hidden" name="camefrom"
-             value="/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html">
+      <input type="hidden" name="camefrom" value="http://localhost/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html">
     </form>
   </div>
   </body>
@@ -399,7 +397,7 @@ Entering wrong password does not authorize either:
   >>> browser.getControl('Password').value = 'let me in'
   >>> browser.getControl('Log in').click()
   >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html'
+  'http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html'
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -428,8 +426,7 @@ Entering wrong password does not authorize either:
         <input class="form-element" type="submit"
                name="SUBMIT" value="Log in" />
       </div>
-      <input type="hidden" name="camefrom"
-             value="/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html">
+      <input type="hidden" name="camefrom" value="http://localhost/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html">
     </form>
   </div>
   </body>
