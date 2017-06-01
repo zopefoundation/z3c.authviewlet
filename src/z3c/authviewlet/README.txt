@@ -71,8 +71,8 @@ we get an HTTP error 401 (unauthorized):
   >>> browser.getLink('Login').click()
   Traceback (most recent call last):
   httperror_seek_wrapper: HTTP Error 401: Unauthorized
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html
 
 When adding correct credentials we get authorized:
 
@@ -83,8 +83,8 @@ We are redirected to the page where we selected the login link. After
 logging in the login link is no longer displayed. As we did not
 specify that logout is supported, no logout link is displayed:
 
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -98,8 +98,8 @@ specify that logout is supported, no logout link is displayed:
 Calling the login URL again leads directly to the page referred in nextURL:
 
   >>> browser.open(login_url)
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -114,8 +114,8 @@ Calling the login URL again without the query parameter leeds to a
 confirmation page telling that login was successfull:
 
   >>> browser.open(login_url.split('?')[0])
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@login.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@login.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -136,8 +136,8 @@ the default view of the container. (``ftesting.zcml`` defines
 ``@@default.html`` as the default view.):
 
   >>> browser.getLink('Back to the main page.').click()
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -161,8 +161,8 @@ displayed:
   ...     zope.authentication.interfaces.ILogoutSupported,
   ...     zope.authentication.logout.LogoutSupported)
   >>> browser.reload()
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -186,8 +186,8 @@ authenticated:
 
   >>> logout_url = browser.getLink('Logout').url
   >>> browser.getLink('Logout').click()
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@logout.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@logout.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -218,8 +218,8 @@ Calling the logout URL again after logout (simulated using a new
 browser instance) leads directly to the page referred in nextURL:
 
   >>> browser2 = Browser(logout_url)
-  >>> browser2.url
-  'http://localhost/++skin++PageletTestSkin/container/@@default.html'
+  >>> print(browser2.url)
+  http://localhost/++skin++PageletTestSkin/container/@@default.html
   >>> print browser2.contents
   <!DOCTYPE ...>
   <html ...>
@@ -235,8 +235,8 @@ Calling the logout URL again without the query parameter leeds to a
 confirmation page telling that logout was successfull:
 
   >>> browser2.open(logout_url.split('?')[0])
-  >>> browser2.url
-  'http://localhost/++skin++PageletTestSkin/container/@@logout.html'
+  >>> print(browser2.url)
+  http://localhost/++skin++PageletTestSkin/container/@@logout.html
   >>> print browser2.contents
   <!DOCTYPE ...>
   <html ...>
@@ -296,8 +296,8 @@ link is displayed:
 
   >>> browser = Browser()
   >>> browser.open(skinURL + 'container/@@default.html')
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -313,8 +313,8 @@ Selecting the link leads to the login page:
 
   >>> login_url = browser.getLink('Login').url
   >>> browser.getLink('Login').click()
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -355,8 +355,8 @@ message:
   >>> browser.getControl('User Name').value = 'me'
   >>> browser.getControl('Password').value = 'tpass'
   >>> browser.getControl('Log in').click()
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -396,8 +396,8 @@ Entering wrong password does not authorize either:
   >>> browser.getControl('User Name').value = 'tester'
   >>> browser.getControl('Password').value = 'let me in'
   >>> browser.getControl('Log in').click()
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -445,8 +445,8 @@ link. After logging in the login link is no longer displayed. As we
 already specified that logout is supported, a logout link is
 displayed:
 
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -462,8 +462,8 @@ displayed:
 Calling the login URL again leads directly to the page referred in nextURL:
 
   >>> browser.open(login_url)
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -479,8 +479,8 @@ Calling the login URL again without the query parameter leeds to a
 confirmation page telling that login was successfull:
 
   >>> browser.open(login_url.split('?')[0])
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@login.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@login.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -501,8 +501,8 @@ the default view of the container. (``ftesting.zcml`` defines
 ``@@default.html`` as the default view.):
 
   >>> browser.getLink('Back to the main page.').click()
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -567,8 +567,8 @@ Calling the logout URL again after logout leads directly to the page
 referred in nextURL:
 
   >>> browser.open(logout_url)
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@default.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@default.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
@@ -584,8 +584,8 @@ Calling the logout URL again without the query parameter leeds to a
 confirmation page telling that logout was successfull:
 
   >>> browser.open(logout_url.split('?')[0])
-  >>> browser.url
-  'http://localhost/++skin++PageletTestSkin/container/@@logout.html'
+  >>> print(browser.url)
+  http://localhost/++skin++PageletTestSkin/container/@@logout.html
   >>> print browser.contents
   <!DOCTYPE ...>
   <html ...>
