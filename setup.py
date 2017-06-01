@@ -63,7 +63,7 @@ setup(
         ),
     install_requires = [
         'setuptools',
-        'z3c.layer.pagelet >= 1.9',
+        'z3c.layer.pagelet[test] >= 1.9',
         'zope.authentication',
         'zope.component',
         'zope.i18n',

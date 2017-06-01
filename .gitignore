@@ -1,5 +1,8 @@
-.installed.cfg
-bin/
-develop-eggs/
-*.pyc
 *.egg-info/
+*.pyc
+.installed.cfg
+.tox/
+bin/
+coverage.xml
+develop-eggs/
+htmlcov/
