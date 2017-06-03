@@ -1,5 +1,6 @@
 *.egg-info/
 *.pyc
+.coverage
 .installed.cfg
 .tox/
 bin/

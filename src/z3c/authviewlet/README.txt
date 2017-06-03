@@ -39,16 +39,17 @@ This template is registered for the ``IContainer`` interface in
 used when browsing the container:
 
   >>> from zope.container.btree import BTreeContainer
-  >>> getRootFolder()['container'] = BTreeContainer()
+  >>> layer.getRootFolder()['container'] = BTreeContainer()
 
 Basic auth
 ~~~~~~~~~~
 
 When the user is not logged in the login link is displayed:
 
-  >>> from zope.testbrowser.testing import Browser
+  >>> from zope.testbrowser.wsgi import Browser
   >>> skinURL = 'http://localhost/++skin++PageletTestSkin/'
-  >>> browser = Browser()
+  >>> wsgi_app = layer.make_wsgi_app()
+  >>> browser = Browser(wsgi_app=wsgi_app)
   >>> browser.handleErrors = False
   >>> browser.open(skinURL + 'container/@@default.html')
   >>> browser.url
@@ -152,14 +153,14 @@ the default view of the container. (``ftesting.zcml`` defines
 Providing an ``ILogoutSupported`` adapter leads to a logout link being
 displayed:
 
-  >>> from zope.app.testing import ztapi
+  >>> import zope.component
   >>> import zope.interface
   >>> import zope.authentication.logout
   >>> import zope.authentication.interfaces
-  >>> ztapi.provideAdapter(
-  ...     zope.interface.Interface,
-  ...     zope.authentication.interfaces.ILogoutSupported,
-  ...     zope.authentication.logout.LogoutSupported)
+  >>> zope.component.provideAdapter(
+  ...     zope.authentication.logout.LogoutSupported,
+  ...     adapts=[zope.interface.Interface],
+  ...     provides=zope.authentication.interfaces.ILogoutSupported)
   >>> browser.reload()
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/
@@ -217,7 +218,7 @@ authenticated:
 Calling the logout URL again after logout (simulated using a new
 browser instance) leads directly to the page referred in nextURL:
 
-  >>> browser2 = Browser(logout_url)
+  >>> browser2 = Browser(logout_url, wsgi_app=wsgi_app)
   >>> print(browser2.url)
   http://localhost/++skin++PageletTestSkin/container/@@default.html
   >>> print browser2.contents
@@ -273,7 +274,7 @@ with a authenticator plug-in (principal folder) first:
   >>> from zope.app.authentication.principalfolder import PrincipalFolder
   >>> from zope.site import site
 
-  >>> root = getRootFolder()
+  >>> root = layer.getRootFolder()
   >>> root['principal_folder'] = PrincipalFolder()
   >>> sm = root.getSiteManager()
   >>> sm.registerUtility(
@@ -294,7 +295,7 @@ We need a principal inside the principal folder:
 We use a new browser, so the principal is not logged in and the login
 link is displayed:
 
-  >>> browser = Browser()
+  >>> browser = Browser(wsgi_app=wsgi_app)
   >>> browser.open(skinURL + 'container/@@default.html')
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@default.html

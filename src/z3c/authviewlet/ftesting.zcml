@@ -33,7 +33,7 @@
   <z3c:layout
       for="z3c.authviewlet.tests.LoginLogoutPage"
       layer="z3c.layer.pagelet.IPageletBrowserLayer"
-      template="login-logout-template.pt"
+      template="tests/login-logout-template.pt"
       />
 
   <z3c:pagelet
@@ -54,13 +54,13 @@
   <z3c:layout
       for="z3c.authviewlet.auth.LogoutRedirectPagelet"
       layer="z3c.layer.pagelet.IPageletBrowserLayer"
-      template="login-logout-template.pt"
+      template="tests/login-logout-template.pt"
       />
 
   <z3c:layout
       for="z3c.authviewlet.auth.LogoutSuccessPagelet"
       layer="z3c.layer.pagelet.IPageletBrowserLayer"
-      template="login-logout-template.pt"
+      template="tests/login-logout-template.pt"
       />
 
   <!-- -->
