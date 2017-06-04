@@ -268,9 +268,9 @@ To do cookie auth we have to set up a pluggable auth utility (PAU)
 with a authenticator plug-in (principal folder) first:
 
   >>> from zope.authentication.interfaces import IAuthentication
-  >>> from zope.app.authentication.interfaces import IAuthenticatorPlugin
-  >>> from zope.app.authentication.authentication import PluggableAuthentication
-  >>> from zope.app.authentication.principalfolder import PrincipalFolder
+  >>> from zope.pluggableauth.interfaces import IAuthenticatorPlugin
+  >>> from zope.pluggableauth.authentication import PluggableAuthentication
+  >>> from zope.pluggableauth.plugins.principalfolder import PrincipalFolder
   >>> from zope.site import site
 
   >>> root = getRootFolder()
@@ -286,7 +286,7 @@ with a authenticator plug-in (principal folder) first:
 
 We need a principal inside the principal folder:
 
-  >>> from zope.app.authentication.principalfolder import InternalPrincipal
+  >>> from zope.pluggableauth.plugins.principalfolder import InternalPrincipal
   >>> root['principal_folder']['1'] = InternalPrincipal(
   ...     'tester', 'tpass', 'Tester')
 

@@ -9,16 +9,10 @@
   <include package="z3c.layer.pagelet.tests" file="ftesting.zcml" />
 
   <!-- exclude will prevent from include -->
-  <exclude package="zope.app.authentication" file="ftpplugins.zcml" />
-  <exclude package="zope.app.authentication" file="groupfolder.zcml" />
-  <exclude package="zope.app.authentication.browser" />
-  <exclude package="zope.app.authentication.browser" file="configure.zcml" />
-  <exclude package="zope.app.authentication.browser" file="groupfolder.zcml" />
-  <exclude package="zope.app.authentication.browser" file="httpplugins.zcml" />
-  <exclude package="zope.app.authentication.browser" file="principalfolder.zcml" />
-  <exclude package="zope.app.authentication.browser" file="session.zcml" />
+  <exclude package="zope.pluggableauth" file="ftpplugins.zcml" />
+  <exclude package="zope.pluggableauth" file="groupfolder.zcml" />
 
-  <include package="zope.app.authentication" />
+  <include package="zope.pluggableauth" />
 
   <!-- load additional configuration -->
   <include package="zope.viewlet" file="meta.zcml" />
