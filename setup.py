@@ -56,7 +56,7 @@ setup(
     extras_require=dict(
         test=[
             'z3c.layer.pagelet [test] >= 1.9',
-            'zope.app.authentication',
+            'zope.pluggableauth',
             'zope.app.wsgi',
             'zope.testbrowser < 5',
             'zope.testing',
