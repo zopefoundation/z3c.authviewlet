@@ -13,8 +13,6 @@
 ##############################################################################
 
 """Login and logout viewlets."""
-
-import urllib
 import z3c.authviewlet.interfaces
 import z3c.pagelet.interfaces
 import zope.authentication.interfaces
@@ -25,6 +23,13 @@ import zope.interface
 import zope.viewlet.interfaces
 import zope.viewlet.manager
 import zope.viewlet.viewlet
+
+
+try:
+    from urllib.parse import quote as urllib_quote
+except ImportError:
+    from urllib import quote as urllib_quote
+
 
 _ = zope.i18nmessageid.MessageFactory("z3c")
 
@@ -90,7 +95,7 @@ class LoginViewlet(zope.viewlet.viewlet.ViewletBase):
     def render(self):
         return u'<a href="%s?nextURL=%s">%s</a>' % (
             get_view_url(self. context, self.request, self.viewName),
-            urllib.quote(self.request.getURL()),
+            urllib_quote(self.request.getURL()),
             zope.i18n.translate(_('[Login]', default='Login'),
                                 domain='z3c', context=self.request))
 
@@ -108,15 +113,14 @@ class LogoutViewlet(zope.viewlet.viewlet.ViewletBase):
     def render(self):
         return u'<a href="%s?nextURL=%s">%s</a>' % (
             get_view_url(self. context, self.request, self.viewName),
-            urllib.quote(self.request.getURL()),
+            urllib_quote(self.request.getURL()),
             zope.i18n.translate(_('[Logout]', default='Logout'),
                                 domain='z3c',
                                 context=self.request))
 
 
+@zope.interface.implementer(z3c.authviewlet.interfaces.ILogin)
 class HTTPAuthenticationLogin(object):
-
-    zope.interface.implements(z3c.authviewlet.interfaces.ILogin)
 
     def login(self, nextURL=None):
         # we don't want to keep challenging if we're authenticated
@@ -141,11 +145,10 @@ class LoginSuccessfulPagelet(object):
     "Pagelet to display login succecc notice."
 
 
+@zope.interface.implementer(zope.authentication.interfaces.ILogout)
 class HTTPAuthenticationLogout(object):
     """Since HTTP Authentication really does not know about logout, we are
     simply challenging the client again."""
-
-    zope.interface.implements(zope.authentication.interfaces.ILogout)
 
     def logout(self, nextURL=None):
         if authenticated(self.request.principal):

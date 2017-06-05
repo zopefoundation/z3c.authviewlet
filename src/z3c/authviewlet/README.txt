@@ -21,7 +21,8 @@ The sample template looks like this:
   >>> import os.path
   >>> template_path = os.path.join(os.path.dirname(__file__), "tests",
   ...     "login-logout-template.pt")
-  >>> print file(template_path, "r").read()
+  >>> with open(template_path, "r") as t:
+  ...     print(t.read())
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -54,7 +55,7 @@ When the user is not logged in the login link is displayed:
   >>> browser.open(skinURL + 'container/@@default.html')
   >>> browser.url
   'http://localhost/++skin++PageletTestSkin/container/@@default.html'
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -86,7 +87,7 @@ specify that logout is supported, no logout link is displayed:
 
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -101,7 +102,7 @@ Calling the login URL again leads directly to the page referred in nextURL:
   >>> browser.open(login_url)
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -117,7 +118,7 @@ confirmation page telling that login was successfull:
   >>> browser.open(login_url.split('?')[0])
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@login.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
   <head>
@@ -139,7 +140,7 @@ the default view of the container. (``ftesting.zcml`` defines
   >>> browser.getLink('Back to the main page.').click()
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -164,7 +165,7 @@ displayed:
   >>> browser.reload()
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -185,7 +186,7 @@ authenticated:
   >>> browser.getLink('Logout').click()
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@logout.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -217,7 +218,7 @@ browser instance) leads directly to the page referred in nextURL:
   >>> browser2 = Browser(logout_url, wsgi_app=wsgi_app)
   >>> print(browser2.url)
   http://localhost/++skin++PageletTestSkin/container/@@default.html
-  >>> print browser2.contents
+  >>> print(browser2.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -234,7 +235,7 @@ confirmation page telling that logout was successfull:
   >>> browser2.open(logout_url.split('?')[0])
   >>> print(browser2.url)
   http://localhost/++skin++PageletTestSkin/container/@@logout.html
-  >>> print browser2.contents
+  >>> print(browser2.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -295,7 +296,7 @@ link is displayed:
   >>> browser.open(skinURL + 'container/@@default.html')
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -312,7 +313,7 @@ Selecting the link leads to the login page:
   >>> browser.getLink('Login').click()
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
   <head>
@@ -354,7 +355,7 @@ message:
   >>> browser.getControl('Log in').click()
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
   <head>
@@ -395,7 +396,7 @@ Entering wrong password does not authorize either:
   >>> browser.getControl('Log in').click()
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
   <head>
@@ -444,7 +445,7 @@ displayed:
 
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -461,7 +462,7 @@ Calling the login URL again leads directly to the page referred in nextURL:
   >>> browser.open(login_url)
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -478,7 +479,7 @@ confirmation page telling that login was successfull:
   >>> browser.open(login_url.split('?')[0])
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@login.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
   <head>
@@ -500,7 +501,7 @@ the default view of the container. (``ftesting.zcml`` defines
   >>> browser.getLink('Back to the main page.').click()
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -518,7 +519,7 @@ where the login link is displayed again:
 
   >>> logout_url = browser.getLink('Logout').url
   >>> browser.getLink('Logout').click()
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -545,7 +546,7 @@ where the login link is displayed again:
     </body>
   </html>
   >>> browser.getLink('If you see this screen for more than 5 seconds').click()
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -562,7 +563,7 @@ referred in nextURL:
   >>> browser.open(logout_url)
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@default.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>
@@ -579,7 +580,7 @@ confirmation page telling that logout was successfull:
   >>> browser.open(logout_url.split('?')[0])
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@logout.html
-  >>> print browser.contents
+  >>> print(browser.contents)
   <!DOCTYPE ...>
   <html ...>
     <head>

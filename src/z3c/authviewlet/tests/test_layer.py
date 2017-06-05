@@ -8,6 +8,7 @@ import zope.app.wsgi.testlayer
 TestLayer = zope.app.wsgi.testlayer.BrowserLayer(z3c.authviewlet)
 checker = renormalizing.RENormalizing([
     (re.compile(r'httperror_seek_wrapper:', re.M), 'HTTPError:'),
+    (re.compile(r'urllib.error.HTTPError:', re.M), 'HTTPError:'),
 ])
 flags = (
     doctest.ELLIPSIS |
