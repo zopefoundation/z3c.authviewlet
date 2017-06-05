@@ -17,8 +17,9 @@ $Id$
 """
 from zope.authentication.interfaces import IUnauthenticatedPrincipal
 
+
 class SessionCredentialsLoginForm(object):
-    "Login form using session credentials."
+    """Login form using session credentials."""
 
     def __init__(self, *args):
         super(SessionCredentialsLoginForm, self).__init__(*args)
