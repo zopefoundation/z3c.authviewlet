@@ -78,7 +78,7 @@ we get an HTTP error 401 (unauthorized):
 When adding correct credentials we get authorized:
 
   >>> browser.addHeader('Authorization', 'Basic mgr:mgrpw')
-  >>> browser.reload()
+  >>> browser.open(browser.url)
 
 We are redirected to the page where we selected the login link. After
 logging in the login link is no longer displayed. As we did not
@@ -175,12 +175,8 @@ displayed:
     </body>
   </html>
 
-Logout is done using JavaScript and a redirect. zope.testbrowser
-follows the redirects even if they use the meta tag instead of the
-status code. So I have to use a non API call to change this behavior
-to show the file contents:
-
-  >>> browser.mech_browser.set_handle_refresh(False)
+Logout is done using JavaScript and a redirect. zope.testbrowser >= 5.0
+does not follow redirects if they use the meta tag.
 
 As testbrowser is not able to execute JavaScript the user remains
 authenticated:
@@ -518,11 +514,8 @@ the default view of the container. (``ftesting.zcml`` defines
 
 Selecting the displayed logout link drops authentication information
 and displays a confirmation page, which redirects to the default page
-where the login link is displayed again (as redirection is done
-automatically by testbrowser I have to use the non API call trick
-again to show the displayed page):
+where the login link is displayed again:
 
-  >>> browser.mech_browser.set_handle_refresh(False)
   >>> logout_url = browser.getLink('Logout').url
   >>> browser.getLink('Logout').click()
   >>> print browser.contents
@@ -562,7 +555,6 @@ again to show the displayed page):
       <a href="http://localhost/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html">Login</a>
     </body>
   </html>
-  >>> browser.mech_browser.set_handle_refresh(True)
 
 Calling the logout URL again after logout leads directly to the page
 referred in nextURL:

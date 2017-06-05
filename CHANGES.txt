@@ -4,7 +4,7 @@ Changes
 0.8.1 (unreleased)
 ~~~~~~~~~~~~~~~~~~
 
-- Nothing changed yet.
+- Update the tests to `zope.testrunner >= 5.0`.
 
 
 0.8.0 (2010-10-13)

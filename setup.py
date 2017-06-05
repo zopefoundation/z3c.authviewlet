@@ -58,7 +58,7 @@ setup(
             'z3c.layer.pagelet [test] >= 1.9',
             'zope.pluggableauth',
             'zope.app.wsgi',
-            'zope.testbrowser < 5',
+            'zope.testbrowser >= 5',
             'zope.testing',
         ],
     ),
