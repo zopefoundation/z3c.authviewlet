@@ -4,9 +4,9 @@ Changes
 1.0 (unreleased)
 ~~~~~~~~~~~~~~~~
 
-- Update the tests to `zope.testrunner >= 5.0`.
-
 - Update to Python 3. Now supporting: Python 3.4 to 3.6, PyPy2 and PyPy3.
+
+- Update the tests to `zope.testbrowser >= 5.0`.
 
 
 0.8.0 (2010-10-13)
