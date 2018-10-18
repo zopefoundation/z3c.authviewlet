@@ -23,7 +23,7 @@ def read(*rnames):
 
 setup(
     name='z3c.authviewlet',
-    version='1.1.dev0',
+    version='1.1',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     description="Authentication viewlet for Zope3",
