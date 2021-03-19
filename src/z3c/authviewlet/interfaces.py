@@ -14,6 +14,7 @@
 
 import zope.interface
 
+
 class ILogin(zope.interface.Interface):
     """A login interface."""
 

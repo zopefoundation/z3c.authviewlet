@@ -11,11 +11,13 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Login Form
-
-$Id$
-"""
+"""Login Form."""
 from zope.authentication.interfaces import IUnauthenticatedPrincipal
+
+try:
+    basestring
+except NameError:  # pragma: PY3
+    basestring = str
 
 
 class SessionCredentialsLoginForm(object):
@@ -27,10 +29,7 @@ class SessionCredentialsLoginForm(object):
             self.request.principal)
 
         camefrom = self.request.get('camefrom')
-        if isinstance(camefrom, list):
-            # this can happen on python2.6, as it changed the
-            # behaviour of cgi.FieldStorage a bit.
-            camefrom = camefrom[0]
+        assert isinstance(camefrom, basestring), type(camefrom)
         self.camefrom = camefrom
 
     def update(self):

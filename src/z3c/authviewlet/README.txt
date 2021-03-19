@@ -310,6 +310,7 @@ link is displayed:
 Selecting the link leads to the login page:
 
   >>> login_url = browser.getLink('Login').url
+  >>> browser.handleErrors = False
   >>> browser.getLink('Login').click()
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=http%3A%2F%2Flocalhost%2F%2B%2Bskin%2B%2BPageletTestSkin%2Fcontainer%2F%40%40login.html%3FnextURL%3Dhttp%253A%2F%2Flocalhost%2F%252B%252Bskin%252B%252BPageletTestSkin%2Fcontainer%2F%2540%2540default.html
