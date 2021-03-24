@@ -14,11 +14,6 @@
 """Login Form."""
 from zope.authentication.interfaces import IUnauthenticatedPrincipal
 
-try:
-    basestring
-except NameError:  # pragma: PY3
-    basestring = str
-
 
 class SessionCredentialsLoginForm(object):
     """Login form using session credentials."""
@@ -29,7 +24,9 @@ class SessionCredentialsLoginForm(object):
             self.request.principal)
 
         camefrom = self.request.get('camefrom')
-        assert isinstance(camefrom, basestring), type(camefrom)
+        if isinstance(camefrom, list):
+            # When using ``camefrom`` twice, we use the first one:
+            camefrom = camefrom[0]
         self.camefrom = camefrom
 
     def update(self):
