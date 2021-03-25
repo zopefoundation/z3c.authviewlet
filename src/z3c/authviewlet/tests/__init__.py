@@ -11,10 +11,6 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""
-$Id:$
-"""
-
 import z3c.pagelet.browser
 
 
@@ -23,4 +19,5 @@ class LoginLogoutPage(z3c.pagelet.browser.BrowserPagelet):
 
     # make sure the pagelet renders no content, as this is not what we
     # want to show with this pagelet
-    template = lambda self: ''
+    def template(self):
+        return ''

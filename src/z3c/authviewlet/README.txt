@@ -602,3 +602,21 @@ confirmation page telling that logout was successfull:
   </div>
     </body>
   </html>
+
+If the parameter ``camefrom`` is used twice, only the first one is actually
+used:
+
+  >>> browser.open('http://localhost/++skin++PageletTestSkin/@@loginForm.html?camefrom=first-url&camefrom=second-url')
+  >>> print(browser.contents)
+  <!DOCTYPE ...>
+  ...
+      <div class="row">
+        <input class="form-element" type="submit" name="SUBMIT" value="Log in" />
+      </div>
+      <input type="hidden" name="camefrom" value="first-url">
+    </form>
+  </div>
+  </body>
+  </html>
+  >>> 'second-url' in browser.contents
+  False

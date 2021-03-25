@@ -74,13 +74,13 @@ def get_view_url(context, request, view_name):
     view_url = zope.component.getMultiAdapter(
         (view, request), name='absolute_url')()
     if view_name_truncated:
-        view_url = view_url.replace(view_name, '@@'+view_name)
+        view_url = view_url.replace(view_name, '@@' + view_name)
     return view_url
 
 
 def render_pagelet(context, request, view_name):
     "Render a pagelet."
-    pagelet =  zope.component.getMultiAdapter(
+    pagelet = zope.component.getMultiAdapter(
         (context, request), z3c.pagelet.interfaces.IPagelet, name=view_name)
     return pagelet()
 
@@ -169,5 +169,3 @@ class LogoutRedirectPagelet(object):
 
 class LogoutSuccessPagelet(object):
     "Pagelet to display logout success."
-
-

@@ -11,10 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Login Form
-
-$Id$
-"""
+"""Login Form."""
 from zope.authentication.interfaces import IUnauthenticatedPrincipal
 
 
@@ -28,8 +25,7 @@ class SessionCredentialsLoginForm(object):
 
         camefrom = self.request.get('camefrom')
         if isinstance(camefrom, list):
-            # this can happen on python2.6, as it changed the
-            # behaviour of cgi.FieldStorage a bit.
+            # When using ``camefrom`` twice, we use the first one:
             camefrom = camefrom[0]
         self.camefrom = camefrom
 
