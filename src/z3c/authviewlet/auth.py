@@ -13,7 +13,6 @@
 ##############################################################################
 
 """Login and logout viewlets."""
-import z3c.authviewlet.interfaces
 import z3c.pagelet.interfaces
 import zope.authentication.interfaces
 import zope.component
@@ -23,6 +22,8 @@ import zope.interface
 import zope.viewlet.interfaces
 import zope.viewlet.manager
 import zope.viewlet.viewlet
+
+import z3c.authviewlet.interfaces
 
 
 try:
