@@ -27,7 +27,7 @@ setup(
     name='z3c.authviewlet',
     version='2.0.dev0',
     author='Zope Foundation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     description="Authentication viewlet for Zope3",
     long_description=(
         read('README.txt')
@@ -64,6 +64,7 @@ setup(
     include_package_data=True,
     package_dir={'': 'src'},
     namespace_packages=['z3c'],
+    python_requires='>=3.7',
     extras_require=dict(
         test=[
             'zope.principalregistry',

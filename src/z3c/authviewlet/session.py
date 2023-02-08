@@ -15,11 +15,11 @@
 from zope.authentication.interfaces import IUnauthenticatedPrincipal
 
 
-class SessionCredentialsLoginForm(object):
+class SessionCredentialsLoginForm:
     """Login form using session credentials."""
 
     def __init__(self, *args):
-        super(SessionCredentialsLoginForm, self).__init__(*args)
+        super().__init__(*args)
         self.unauthenticated = IUnauthenticatedPrincipal.providedBy(
             self.request.principal)
 

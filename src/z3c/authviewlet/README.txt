@@ -70,9 +70,10 @@ Selecting the link leads to the login page, as we use basic auth here,
 we get an HTTP error 401 (unauthorized):
 
   >>> login_url = browser.getLink('Login').url
+  >>> browser.raiseHttpErrors = False
   >>> browser.getLink('Login').click()
-  Traceback (most recent call last):
-  httperror_seek_wrapper: HTTP Error 401: Unauthorized
+  >>> print(browser.headers['status'])
+  401 Unauthorized
   >>> print(browser.url)
   http://localhost/++skin++PageletTestSkin/container/@@login.html?nextURL=http%3A//localhost/%2B%2Bskin%2B%2BPageletTestSkin/container/%40%40default.html
 
