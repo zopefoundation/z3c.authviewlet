@@ -91,7 +91,7 @@ class LoginViewlet(zope.viewlet.viewlet.ViewletBase):
 
     def render(self):
         return '<a href="{}?nextURL={}">{}</a>'.format(
-            get_view_url(self. context, self.request, self.viewName),
+            get_view_url(self.context, self.request, self.viewName),
             urllib.parse.quote(self.request.getURL()),
             zope.i18n.translate(_('[Login]', default='Login'),
                                 domain='z3c', context=self.request))
