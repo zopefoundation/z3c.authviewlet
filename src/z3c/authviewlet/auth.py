@@ -13,7 +13,8 @@
 ##############################################################################
 
 """Login and logout viewlets."""
-import z3c.authviewlet.interfaces
+import urllib.parse
+
 import z3c.pagelet.interfaces
 import zope.authentication.interfaces
 import zope.component
@@ -24,11 +25,7 @@ import zope.viewlet.interfaces
 import zope.viewlet.manager
 import zope.viewlet.viewlet
 
-
-try:
-    from urllib.parse import quote as urllib_quote
-except ImportError:
-    from urllib import quote as urllib_quote
+import z3c.authviewlet.interfaces
 
 
 _ = zope.i18nmessageid.MessageFactory("z3c")
@@ -93,9 +90,9 @@ class LoginViewlet(zope.viewlet.viewlet.ViewletBase):
         return not authenticated(self.request.principal)
 
     def render(self):
-        return u'<a href="%s?nextURL=%s">%s</a>' % (
-            get_view_url(self. context, self.request, self.viewName),
-            urllib_quote(self.request.getURL()),
+        return '<a href="{}?nextURL={}">{}</a>'.format(
+            get_view_url(self.context, self.request, self.viewName),
+            urllib.parse.quote(self.request.getURL()),
             zope.i18n.translate(_('[Login]', default='Login'),
                                 domain='z3c', context=self.request))
 
@@ -111,16 +108,16 @@ class LogoutViewlet(zope.viewlet.viewlet.ViewletBase):
             logout_supported(self.request))
 
     def render(self):
-        return u'<a href="%s?nextURL=%s">%s</a>' % (
+        return '<a href="{}?nextURL={}">{}</a>'.format(
             get_view_url(self. context, self.request, self.viewName),
-            urllib_quote(self.request.getURL()),
+            urllib.parse.quote(self.request.getURL()),
             zope.i18n.translate(_('[Logout]', default='Logout'),
                                 domain='z3c',
                                 context=self.request))
 
 
 @zope.interface.implementer(z3c.authviewlet.interfaces.ILogin)
-class HTTPAuthenticationLogin(object):
+class HTTPAuthenticationLogin:
 
     def login(self, nextURL=None):
         # we don't want to keep challenging if we're authenticated
@@ -137,16 +134,16 @@ class HTTPAuthenticationLogin(object):
                 self.request.response.redirect(nextURL)
 
 
-class LoginFailedPagelet(object):
+class LoginFailedPagelet:
     "Pagelet to display login failed notice."
 
 
-class LoginSuccessfulPagelet(object):
+class LoginSuccessfulPagelet:
     "Pagelet to display login succecc notice."
 
 
 @zope.interface.implementer(zope.authentication.interfaces.ILogout)
-class HTTPAuthenticationLogout(object):
+class HTTPAuthenticationLogout:
     """Since HTTP Authentication really does not know about logout, we are
     simply challenging the client again."""
 
@@ -163,9 +160,9 @@ class HTTPAuthenticationLogout(object):
             return self.request.response.redirect(nextURL)
 
 
-class LogoutRedirectPagelet(object):
+class LogoutRedirectPagelet:
     "Pagelet to display logout redirect."
 
 
-class LogoutSuccessPagelet(object):
+class LogoutSuccessPagelet:
     "Pagelet to display logout success."

@@ -1,8 +1,10 @@
-from zope.testing import renormalizing
 import doctest
 import re
-import z3c.authviewlet
+
 import zope.app.wsgi.testlayer
+from zope.testing import renormalizing
+
+import z3c.authviewlet
 
 
 TestLayer = zope.app.wsgi.testlayer.BrowserLayer(z3c.authviewlet)
